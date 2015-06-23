@@ -1,7 +1,7 @@
 #!/bin/bash
 cd /home/deploy/discourse-dev.rgadev.com/discourse
-bluepill stop
-bluepill quit
+bluepill stop --no-privileged
+bluepill quit --no-privileged
 git pull
 bundle install --without test --deployment
 RUBY_GC_MALLOC_LIMIT=90000000 RAILS_ENV=production bundle exec rake db:migrate
