@@ -1,0 +1,12 @@
+plugins:
+  custom_fields_enabled:
+    default: true
+  custom_fields:
+    client: true
+    type: list
+    default: 'client|project_name|description|reference_links'
+    choices:
+     - client
+     - project_name
+     - description
+     - reference_links
