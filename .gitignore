@@ -48,6 +48,7 @@ log/
 !/plugins/lazyYT/
 !/plugins/poll/
 !/plugins/custom-fields/
+!/plugins/fake-api/
 !/plugins/discourse-tagging/
 /plugins/*/auto_generated/
 
