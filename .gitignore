@@ -49,6 +49,7 @@ log/
 !/plugins/poll/
 !/plugins/custom-fields/
 !/plugins/fake-api/
+!/plugins/google-auth-custom-callback/
 !/plugins/discourse-tagging/
 /plugins/*/auto_generated/
 
