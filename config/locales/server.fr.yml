@@ -242,7 +242,7 @@ fr:
     no_info_other: "<div class='missing-profile'>%{name} n'a pas encore renseigné le champ A Propos de Moi de son profil</div>"
   vip_category_name: "Salon"
   vip_category_description: "Une catégorie réservée aux membres avec un niveau de confiance 3 et plus."
-  meta_category_name: "Meta"
+  meta_category_name: "Retours sur le Site"
   meta_category_description: "Discussion à propos du site, son organisation, son fonctionnement, et comment nous pouvons l'améliorer."
   staff_category_name: "Staff"
   staff_category_description: "Catégorie privée pour les discussions de l'équipe du forum. Les sujets ne sont visibles que pour les admins et les modérateurs."
@@ -382,7 +382,7 @@ fr:
         one: "il y a presque un an"
         other: "il y a presque %{count} ans"
   password_reset:
-    no_token: "Désolé, ce lien de modification de mot de passe est trop vieux. Connectez-vous à nouveau et sélectionnez \"J'ai oublié mon mot de passe\" afin d'obtenir un nouveau lien."
+    no_token: "Désolé, ce lien de changement de mot de passe est trop vieux. Sélectionnez 'J'ai oublié mon mot de passe' pour obtenir un nouveau lien."
     choose_new: "Veuillez choisir un nouveau mot de passe"
     choose: "Veuillez choisir un mot de passe"
     update: 'Mettre à jour le mot de passe '
@@ -464,6 +464,7 @@ fr:
     regular:
       title: "Sujet normal"
     banner:
+      title: "Bannière de sujet"
       message:
         make: "Ce sujet est maintenant un gros titre. Il sera affiché en haut de chaque page jusqu’à qu'il soit ignoré par un utilisateur."
         remove: "Ce sujet n'es plus un gros titre. Il ne sera plus affiché en haut de chaque page."
@@ -571,6 +572,14 @@ fr:
       title: "Total"
       xaxis: "Jour"
       yaxis: "Requêtes API total"
+    page_view_logged_in_mobile_reqs:
+      title: "Requêtes API connectées"
+      xaxis: "Jour"
+      yaxis: "Requêtes API connectées mobiles"
+    page_view_anon_mobile_reqs:
+      title: "Requêtes API anonymes"
+      xaxis: "Jour"
+      yaxis: "Requêtes API anonymes mobiles"
     http_background_reqs:
       title: "Arrière plan"
       xaxis: "Jour"
@@ -595,6 +604,18 @@ fr:
       title: "Total"
       xaxis: "Jour"
       yaxis: "Total des requêtes"
+    time_to_first_response:
+      title: "Délai de première réponse"
+      xaxis: "Jour"
+      yaxis: "Temps moyen (heures)"
+    topics_with_no_response:
+      title: "Sujets sans réponses"
+      xaxis: "Jour"
+      yaxis: "Total"
+    mobile_visits:
+      title: "Visites utilisateurs"
+      xaxis: "Jour"
+      yaxis: "Nombre de visites"
   dashboard:
     rails_env_warning: "Votre serveur fonctionne dans l'environnement de %{env}."
     ruby_version_warning: "Vous exécutez une version de Ruby 2.0.0 qui est connu pour avoir des problèmes. Migrez vers le patch 247 ou supérieur."
@@ -662,7 +683,7 @@ fr:
     max_topic_title_length: "Longueur maximale autorisée des titres de sujet en nombre de caractères"
     min_private_message_title_length: "Longueur minimale pour un titre de message en nombre de caractères"
     min_search_term_length: "Longueur minimale autorisée du texte saisie avant de lancer une recherche en nombre de caractères"
-    allow_uncategorized_topics: "Autoriser la création de sujet sans catégorie."
+    allow_uncategorized_topics: "Autorise la création de sujets sans catégorie. ATTENTION : S'il existe des sujets non-catégorisés, vous devez les catégoriser avant de désactiver cette fonction."
     uncategorized_description: "La description de la catégorie Sans catégorie. Laissez vide pour ne pas avoir de description."
     allow_duplicate_topic_titles: "Autoriser la création de sujet avec le même titre."
     unique_posts_mins: "Combien de temps avant qu'un utilisateur puisse poster le même contenu à nouveau"
@@ -685,6 +706,7 @@ fr:
     category_featured_topics: "Nombre de sujets affichés par catégorie sur la page /categories. Après avoir modifié cette valeur, il faut jusqu'à 15 minutes pour que la page des catégories soit mise à jour."
     show_subcategory_list: "Voir les sous-catégories à la place de la liste des sujets lorsqu'on entre dans la catégorie."
     fixed_category_positions: "Si coché, vous pourrez modifier l'ordre des catégories. Si décoché, elle seront triées par ordre d'activité."
+    fixed_category_positions_on_create: "Si coché, le classement des catégories sera maintenu dans la fenêtre de création de sujet (nécessite fixed_category_positions)."
     add_rel_nofollow_to_user_content: "Ajouter rel nofollow à tous les contenus des utilisateurs, sauf les liens internes (incluant les domaines parents). Si vous modifier ceci, vous devez exécuter la commande  \"rake posts:rebake\""
     exclude_rel_nofollow_domains: "Une liste de domaines pour lesquels l'attribut nofollow ne sera pas ajouté aux liens. tld.com autorisera automatiquement sub.tld.com également. Au minimum, vous devriez ajouter le domaine de premier niveau (TLD) de ce site pour aider les robots d'indexation à trouver tout le contenu. Si d'autres parties du site sont sur d'autre domaines, ajoutez-les aussi."
     post_excerpt_maxlength: "Longueur maximale d'un extrait / résumé de message."
@@ -770,15 +792,16 @@ fr:
     login_required: "Authentification requise pour lire le contenu du site, interdit l'accès anonyme."
     min_username_length: "Longueur minimum des pseudos en nombre de caractères. ATTENTION : TOUS LES UTILISATEURS QUI SONT EN DESSOUS DE CETTE LIMITE NE POURRONS PLUS ACCÉDER AU SITE. "
     max_username_length: "Longueur maximum des pseudos en caractères. ATTENTION : TOUS LES UTILISATEURS QUI DÉPASSE CETTE LIMITE NE POURRONS PLUS ACCÉDER AU SITE. "
+    reserved_usernames: "Pseudos pour lesquels l'inscription n'est pas autorisée."
     min_password_length: "Longueur minimale du mot de passe."
     block_common_passwords: "Ne pas autoriser les mots de passe qui font parti des 10 000 les plus utilisés."
     enable_sso: "Activer l'authentification unique via un site externe (ATTENTION: LES ADRESSES EMAIL *DOIVENT* ÊTRE VALIDÉES PAR LE SITE EXTERNE !)"
     enable_sso_provider: "Implémenter le procotole Discourse de provider SSO à /session/sso_provider, requiert sso_secret"
     sso_url: "URL de l'authentification unique"
     sso_secret: "Chaîne de caractères secrète utilisée pour authentifier les informations SSO par cryptographie, assurez-vous qu'elle est de 10 caractères ou plus"
-    sso_overrides_email: "Surcharger les adresses de courriel locales avec les adresses de courriel  externes d'un SSO (ATTENTION: Des écarts peuvent se produire due aux règles locales sur les adresses de courriel)"
-    sso_overrides_username: "Surcharger les pseudos avec les pseudos du SSO (ATTENTION: Des écarts peuvent se produire due aux règles locales sur les pseudos)"
-    sso_overrides_name: "Surcharger les noms locaux avec les noms du site fournissant l'authentification unique"
+    sso_overrides_email: "Surcharger les emails locaux avec les emails externes d'un SSO à chaque connexion, et prévenir les modifications locales. (ATTENTION : Des écarts peuvent se produire dus aux règles locales sur les emails)"
+    sso_overrides_username: "Surcharger les pseudos locaux avec les pseudos externes d'un SSO à chaque connexion, et prévenir les modifications locales. (ATTENTION: Des écarts peuvent se produire dus aux différences de longueur et d'exigences sur les pseudos)"
+    sso_overrides_name: "Surcharger les noms complets locaux avec les noms complets externes d'un SSO à chaque connexion, et prévenir les modifications locales."
     sso_overrides_avatar: "Surcharge les avatars des utilisateurs avec les avatars d'un SSO. Si activé, il est fortement recommandé de désactiver allow_uploaded_avatars."
     sso_not_approved_url: "Rediriger les comptes SSO non validés vers cette URL"
     enable_local_logins: "Activer l'authentification traditionnelle, avec pseudo local et mot de passe. (Note: Doit être activé pour que les invitations fonctionnent)"
@@ -952,12 +975,14 @@ fr:
     sequential_replies_threshold: "Nombre de messages qu'un utilisateur doit poster d'affilé dans un sujet avant d'être rappelé à l'ordre pour multiple réponses."
     enable_mobile_theme: "Les appareils mobiles utilisent un thème adapté aux mobiles, avec la possibilité de passer à la totalité du site. Désactivez cette option si vous voulez utiliser une feuille de style personnalisée qui répond à tous les types de client."
     dominating_topic_minimum_percent: "Quel est le pourcentage de messages un utilisateur doit poster dans un sujet avant d'être rappelé à l'ordre pour laissé la communauté répondre."
+    daily_performance_report: "Analyser les logs de NGINX quotidiennement et poster un sujet Responsables Uniquement avec les détails"
     suppress_uncategorized_badge: "Ne pas afficher le badge pour les sujets non catégorisés dans les listes des sujets."
     global_notice: "Affiche un bandeau global URGENT pour tout les utilisateurs du site, laissez vide pour le cacher (HTML autorisé)."
     disable_edit_notifications: "Désactiver les notifications de modifications par l'utilisateur système lorsque l'option 'download_remote_images_to_local' est activée."
     full_name_required: "Le nom complet est requis dans le profil utilisateur."
     enable_names: "Autoriser l'affichage des noms complets des utilisateurs dans leur profil, sur leur carte d'utilisateur et dans les courriels. Décocher pour cacher les noms complets partout."
     display_name_on_posts: "Afficher le nom complet de l'utilisateur dans ses messages en plus de son @pseudo."
+    show_time_gap_days: "Si deux messages sont publiés à ce nombre de jours d'écart, affichez cette durée dans le sujet."
     invites_per_page: "Afficher les invitations sur la page de l'utilisateur."
     short_progress_text_threshold: "Si le nombre de messages dans un sujet dépasse ce nombre, la barre de progression affichera uniquement le numéro de message actuel. Si vous modifiez la largeur de la barre de progression, vous devrez peut-être modifier cette valeur."
     default_code_lang: "Coloration syntaxique par défaut appliquée à la syntaxe des langages de programmation des blocs de code GitHub (lang-auto, Ruby, Python, etc)"
@@ -986,6 +1011,7 @@ fr:
     enforce_square_emoji: "Forcer tous les emojiis à être carrés."
     approve_post_count: "Le nombre de messages d'un nouvel utilisateur qui doivent être approuvés"
     approve_unless_trust_level: "Les messages des utilisateurs qui n'ont pas atteint ce niveau de confiance doivent être approuvés"
+    notify_about_queued_posts_after: "Si des messages sont en attente de modération depuis ce nombre d'heures, un email sera envoyé à l'email de contact. Désactivez ces emails en indiquant 0."
     errors:
       invalid_email: "Adresse de courriel invalide."
       invalid_username: "Il n'y a pas d'utilisateur ayant ce pseudo."
@@ -1094,6 +1120,7 @@ fr:
     omniauth_error_unknown: "Quelque chose s'est mal passé lors de votre connexion, merci de réessayer."
     new_registrations_disabled: "La création de nouveau compte n'est pas autorisé pour le moment."
     password_too_long: "Les mots de passe sont limités à 200 caractères."
+    reserved_username: "Ce pseudo n'est pas autorisé."
     missing_user_field: "Vous n'avez pas renseigné l'ensemble des champs utilisateur"
     close_window: "Identification terminée. Fermez cette fenêtre pour continuer."
   user:
@@ -1193,8 +1220,38 @@ fr:
       [mj]: https://www.mailjet.com/pricing
   new_version_mailer:
     subject_template: "[%{site_name}] Nouvelle version de Discourse, mise à jour disponible"
+    text_body_template: |
+      Une nouvelle version de [Discourse](http://www.discourse.org)  est disponible.
+
+      Votre version: %{installed_version}
+      Nouvelle version: **%{new_version}**
+
+      Vous voulez peut-être:
+
+      - Voir les nouveautés sur le [changelog de GitHub](https://github.com/discourse/discourse/commits/master).
+
+      - Mettre à jour depuis votre navigateur en allant sur [%{base_url}/admin/upgrade](%{base_url}/admin/upgrade)
+
+      - Visiter [meta.discourse.org](http://meta.discourse.org) pour vous tenir au courant, discuter et avoir de l'aide à propos de Discourse.
   new_version_mailer_with_notes:
     subject_template: "[%{site_name}] mise à jour disponible"
+    text_body_template: |
+      Une nouvelle version de [Discourse](http://www.discourse.org)  est disponible.
+
+      Votre version: %{installed_version}
+      Nouvelle version: **%{new_version}**
+
+      Vous voulez peut-être:
+
+      - Voir les nouveautés sur le [changelog de GitHub](https://github.com/discourse/discourse/commits/master).
+
+      - Mettre à jour depuis votre navigateur en allant sur [%{base_url}/admin/upgrade](%{base_url}/admin/upgrade)
+
+      - Visiter [meta.discourse.org](http://meta.discourse.org) pour vous tenir au courant, discuter et avoir de l'aide à propos de Discourse.
+
+      ### Notes de mise à jour
+
+      %{notes}
   flags_reminder:
     flags_were_submitted:
       one: "Il y a un signalement qui a été soumis il y a plus de %{count} heures."
@@ -1205,6 +1262,14 @@ fr:
     subject_template:
       one: "un signalement en attente de traitement"
       other: "%{count} signalements en attente de traitement."
+  queued_posts_reminder:
+    subject_template:
+      one: "[%{site_name}] 1 message en attente de modération"
+      other: "[%{site_name}] %{count} messages en attente de modération"
+    text_body_template: |
+      Bonjour,
+
+      Des messages de nouveaux utilisateurs sont en attente de modération. [Ils peuvent être approuvés ou rejetés ici](%{base_url}/queued-posts).
   flag_reasons:
     off_topic: "Votre message a été signalé comme étant **hors sujet**: la communauté considère qu'il ne correspond au sujet en discussion, qui est fixé par son titre et son premier message."
     inappropriate: "Votre message a été signalé comme étant **inapproprié**: la communauté considère que son contenu est offensif, abusif ou enfreint notre [règlement interne](/guidelines)."
@@ -1216,7 +1281,7 @@ fr:
     disagreed: "Merci de nous en informer. Nous travaillons à sa résolution."
     deferred: "Merci de nous en informer. Nous travaillons à sa résolution."
     deferred_and_deleted: "Merci de nous en informer. Nous avons supprimé le message."
-  temporarily_closed_due_to_flags: "Ce sujet est temporairement clos dû à un trop grand nombre de signalements"
+  temporarily_closed_due_to_flags: "Ce sujet est temporairement fermé à cause d'un grand nombre de signalements de la communauté."
   system_messages:
     post_hidden:
       subject_template: "Message caché suite à un signalement par la communauté"
@@ -1243,7 +1308,7 @@ fr:
       text_body_template: "Merci d'avoir accepté votre invitation sur %{site_name} et bienvenue !\n\nNous avons créé un nouveau compte : **%{username}**, et vous y êtes connecté. Vous pouvez changer votre pseudo en allant sur [votre profil][prefs].\n\nPour vous reconnecter :\n\n1. Toujours **utiliser la même adresse de courriel que celle de l'invitation** que vous avez reçue. Autrement, nous ne pourrons pas vous reconnaître.\n\n2. Créer un mot de passe unique sur votre [sur votre profil][prefs] et connectez-vous avec. \n\n%{new_user_tips}\n\nNous croyons au [comportement communautaire civilisé](%{base_url}/guidelines) en tous temps.\n\nAmusez-vous bien !\n\n(Si, en tant que nouvel utilisateur, vous avez besoin de communiquer avec un [responsable](%{base_url}/about), répondez simplement à ce message).\n\n[prefs] : %{user_preferences_url}\n"
     backup_succeeded:
       subject_template: "Sauvegarde terminée avec succès"
-      text_body_template: "La sauvegarde a été un succès.\nVisitez la section [Administration > sauvegardes](/admin/backups) pour télécharger votre dernière sauvegarde."
+      text_body_template: "La sauvegarde a bien réussie.\nVisitez [la section admin > sauvegarde](%{base_url}/admin/backups) pour télécharger votre nouvelle sauvegarde."
     backup_failed:
       subject_template: "Échec de la sauvegarde"
       text_body_template: |
@@ -1907,103 +1972,56 @@ fr:
       \ ?](#cookies)\n\nOui. Les cookies sont de petits fichiers qu'un site ou son prestataire de services transfert sur le disque dur de votre ordinateur via votre navigateur Web (si vous permettez). Ces cookies permettent au site de reconnaître votre navigateur et, si vous avez un compte enregistré, l'associer à votre compte enregistré.\n\nNous utilisons des cookies pour comprendre et sauvegarder vos préférences pour de futures visites et compiler des données globales sur le trafic du site et les interactions avec le site afin que nous puissions offrir de meilleures expériences de navigation et de meilleurs outils à l'avenir. Nous pouvons conclure des contrats avec des fournisseurs de services tiers pour nous aider à mieux comprendre les visiteurs du site. Ces fournisseurs de services ne sont pas autorisés à utiliser les renseignements recueillis en notre nom, sauf pour nous aider à mener et à améliorer notre entreprise.\n\n<a name=\"disclose\"></a>\n\n## [Divulguons-nous des informations à des tiers?](#disclose)\n\nNous ne vendons pas, ni échangeons, ou même transférerons vos renseignements personnelles à des tiers. Ceci n'inclut pas les tiers de confiance qui nous aident à exploiter notre site, la conduite de nos affaires, ou vous servir, tant que ces parties conviennent à garder ces informations\
       \ confidentiels. Nous pouvons également divulguer vos informations lorsque nous croyons nécessaire de se conformer à la loi, appliquer nos politiques de site, ou la nôtre ou d'autres droits, la propriété ou la sécurité. Toutefois, des informations non personnelles des visiteurs peuvent être fournis à d'autres parties pour le marketing, la publicité, ou d'autres utilisations.\n\n<a name=\"third-party\"></a>\n\n## [Liens vers des tiers](#third-party)\n\nParfois, à notre discrétion, nous pouvons inclure ou offrir des produits ou services de tiers sur notre site. Ces sites tiers ont des politiques de confidentialité distinctes et indépendantes. Nous n'avons donc aucune responsabilité pour le contenu et les activités de ces sites. Néanmoins, nous cherchons à protéger l'intégrité de notre site et sommes disposés à accueillir tous les commentaires au sujet de ces sites. \n\n<a name=\"coppa\"></a>\n\n## [Protection des mineurs](#coppa)\n\nNotre site, produits et services sont dirigés vers les personnes qui ont au moins 13 ans ou plus. Si ce serveur est aux Etats-Unis, et que vous êtes sous l'âge de 13 ans, conformément aux exigences de la COPPA ([Children's Online Privacy Protection Act](http://fr.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act)), n'utiliser pas ce site. <a name=\"\
       online\"></a> ## [Politique de confidentialité en ligne](#online) Cette politique de confidentialité en ligne s'applique uniquement aux informations collectées sur notre site et non aux informations recueillies hors connexion. <a name=\"consent\"></a> ## [Votre consentement](#consent) En utilisant notre site, vous consentez à la Politique de confidentialité de notre site web.\n\n<a name=\"changes\"></a>\n\n## [Changements à notre politique de confidentialité](#changes)\n\nSi nous décidons de changer notre politique de confidentialité, nous afficherons ces modifications sur cette page.\n\nCe document est soumis à la licence creative commons CC-BY-SA.\n"
-  static:
-    search_help: |
-      <h2>Astuces</h2>
-      <p>
-      <ul>
-        <li>Les résultats dont le titre correspond à la recherche sont retournés en priorité. Donc, en cas de doutes, recherchez dans les titres</li>
-        <li>Pour obtenir de meilleurs résultats, utilisez toujours des mots rares ou peu fréquents</li>
-        <li>Dès que possible, limitez vos recherches à une catégorie en particulier, à un utilisateur ou à un sujet</li>
-      </ul>
-      </p>
-      <h2>Paramètres</h2>
-      <p>
-        <table>
-        <tr><td><code>order:views</code></td><td><code>order:latest</code></td><td colspan=3></td></tr>
-        <tr><td><code>status:open</code></td><td><code>status:closed</code></td><td><code>status:archived</code></td><td><code>status:noreplies</code></td><td><code>status:singleuser</code></td></tr>
-        <tr><td><code>category:foo</code></td><td><code>user:foo</code></td><td colspan=3></td></tr>
-        <tr><td><code>in:likes</code></td><td><code>in:posted</code></td><td><code>in:watching</code></td><td><code>in:tracking</code></td><td><code>in:private</code></td></tr>
-      <tr><td><code>in:bookmarks</code></td><td colspan=4></td></tr>
-      </table>
-      </p>
-      <p>
-        <code>rainbows category:parks status:open order:latest</code> recherchera les sujets qui contiennent le mot "rainbows", qui sont dans la catégorie "parks" et qui ne sont ni fermés ni archivé. Les résultats seront triés par la date du dernier message publié.
-      </p>
   badges:
     long_descriptions:
       autobiographer: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé au remplissage de <a href="/my/preferences">votre profil utilisateur</a> et au choix d'une photo de profil. En dire plus à la communauté sur vous et vos intérêts permet de la rendre plus agréable et plus connectée.
       first_like: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé la première fois que vous aimez un message en utilisant le bouton :heart:. Aimer des messages est le moyen parfait pour dire aux autres membres de la communauté que ce qu'ils ont posté était intéressant, utile, cool, ou amusant.
       first_link: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé la première fois que vous placez un lien vers un autre sujet dans une de vos réponses. Lier des sujets aide les autres lecteurs à trouver des conversations proches potentiellement intéressantes, en montrant les connexions entre sujets dans les deux directions.
       first_quote: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé la première fois que vous citez un message dans une de vos réponses. Citer des passages pertinents des messages précédents dans votre réponse aide à garder les discussions ciblées et à rester dans le sujet.
       first_share: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé la première fois que vous partagez un lien vers une réponse ou un sujet en utilisant le bouton de partage. Partager des liens est un très bon moyen de diffuser des discussions intéressantes auprès du reste du monde et de faire grandir votre communauté.
       read_guidelines: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé après <a href="/guidelines">lecture des règles de la communauté</a>. Respecter et partager ces règles simples permet de construire une communauté sure, agréable et durable.
       reader: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé après lecture d'un long sujet. Lire est fondamental. Lire vous aide grandement à suivre une conversation et mène à des réponses meilleures et plus complètes.
       editor: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé après édition d'un de vos messages. N'hésitez pas à éditer vos messages à n'importe quel moment pour les améliorer, corriger de petites erreurs, ou ajouter quelque chose que vous auriez oublié.
       first_flag: |
-        Les signalements sont essentiels à la santé de la communauté. Si vous remarquez des messages qui requièrent l'attention d'un modérateur, s'il vous plaît,
-        n'hésitez pas à les signaler. À partir du niveau de confiance 1, vous pouvez également utiliser le formulaire de signalement pour envoyer des <b>messages directs</b> aux autres utilisateurs.
+        Ce badge est accordé après signalement d'un message. Les signalements sont essentiels à la santé de votre communauté. Si vous remarquez des messages nécessitant l'intervention d'un modérateur n'hésitez pas à les signaler. Vous pouvez aussi utiliser les boîtes de dialogue de signalement pour envoyer des <b>messages</ba> à d'autres utilisateurs.
       nice_share: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé après le partage d'un lien vers un message consulté par 25 visiteurs extérieurs. Bien joué ! Partager des liens vers des discussions intéressantes auprès de vos amis est un excellent moyen de faire grandir votre communauté.
       welcome: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé lorsque vous recevez votre premier "J'aime" sur un de vos messages. Félicitations, vous avez écrit quelque chose que les membres de votre communauté ont trouvé intéressant, cool, ou utile !
       anniversary: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé après le partage d'un lien vers un message consulté par 25 visiteurs extérieurs. Bien joué ! Partager des liens vers des discussions intéressantes auprès de vos amis est un excellent moyen de faire grandir votre communauté.
       good_share: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé après le partage d'un lien vers un message consulté par 300 visiteurs extérieurs. Bon travail ! Vous avez diffusé une discussion intéressante à <i>beaucoup</i> de nouvelles personnes et nous avez aidés à grandir.
       great_share: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé après le partage d'un lien vers un message consulté par 100 visiteurs extérieurs. Wow ! Vous avez fait la promotion d'une discussion intéressante auprès d'une énorme nouvelle audience pour le compte de cette communauté, et nous avez beaucoup aidé à grandir.
       nice_post: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé après la création d'une réponse ayant reçu 10 "J'aime". Bien joué !
       nice_topic: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé après la création d'un sujet ayant reçu 10 "J'aime". Bien joué !
       good_post: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé après la création d'une réponse ayant reçu 25 "J'aime". Bon travail !
       good_topic: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé après la création d'un sujet ayant reçu 25 "J'aime". Bon travail !
       great_post: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé après la création d'un message ayant reçu 50 "J'aime". Wow !
       great_topic: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé après la création d'une réponse ayant reçu 50 "J'aime". Wow !
       basic: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé lorsque vous atteignez le niveau de confiance 1. Merci d'être resté dans le coin un petit moment et d'avoir lu quelques sujets pour en apprendre plus sur notre communauté. Vos restrictions "nouvel utilisateur" ont été levées, et vous avez accès aux fonctionnalités essentielles telles que la messagerie personnelle, le signalement, l'édition des wikis, et la possibilité de poster des images et de multiples liens.
       member: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé lorsque vous atteignez le niveau de confiance 2. Merci d'avoir participé durant plusieurs semaines à notre communauté. Vous pouvez désormais envoyer des invitations personnelles depuis votre page utilisateur ou un sujet, des messages groupés, et quelques "J'aime" supplémentaires chaque jour.
       regular: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé lorsque vous atteignez le niveau de confiance 3. Merci d'avoir été un participant régulier à notre communauté pendant ces quelques mois, l'un de nos lecteurs les plus actifs et un contributeur sérieux à ce qui rend notre communauté si belle. Vous pouvez désormais recatégoriser et renommer des sujets, accéder à la section privée, signaler des spams, et vous avez plein de "J'aime" en plus chaque jour.
       leader: |
-        Bla bla bla
-        Bla bla bla
+        Ce badge est accordé lorsque vous atteignez le niveau de confiance 4. Vous êtes un meneur choisi par l'équipe dans cette communauté, et vous montrez l'exemple dans vos actions et vos mots. Vous avez la capacité d'éditer tous les messages, utiliser les actions de modérations telles qu'épingler, fermer, cacher, archiver, scinder et réunir, ainsi que des tonnes de "J'aime" par jour.
   admin_login:
     success: "Courriel envoyé"
     error: "Erreur !"
@@ -2011,3 +2029,6 @@ fr:
     submit_button: "Envoyer un courriel"
   discourse_hub:
     access_token_problem: "En informer un administrateur : Veuillez mettre à jour les paramètres du site afin de renseigner une clé discourse_org_access_key correcte."
+  performance_report:
+    initial_post_raw: Ce sujet comprend des rapports de performance journaliers concernant votre site.
+    initial_topic_title: Rapports de performances du site

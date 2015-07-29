@@ -545,6 +545,9 @@ section.details {
     .preview-link {
       margin-left: 15px;
     }
+    .export {
+      float: right;
+    }
     padding-left: 10px;
     width: 70%;
     .style-name {
@@ -770,6 +773,9 @@ table.api-keys {
       i.fa {
         color: $primary;
       }
+      i.fa-heart {
+        color: $love;
+      }
     }
 
     th {
@@ -811,6 +817,15 @@ table.api-keys {
           display: inline;
           visibility: hidden;
         }
+      }
+    }
+
+    tr.reverse-colors {
+      td.value.trending-down i.down {
+        color: $success;
+      }
+      td.value.trending-up i.up {
+        color: $danger;
       }
     }
   }
@@ -1034,7 +1049,7 @@ table.api-keys {
     margin-top: 10px;
   }
 
-  #pagedown-editor {
+  .pagedown-editor {
     width: 98%;
   }
 
@@ -1043,7 +1058,7 @@ table.api-keys {
     height: 200px;
   }
 
-  #wmd-input {
+  .wmd-input {
     width: 98%;
     height: 200px;
   }
@@ -1196,7 +1211,7 @@ table.api-keys {
   position: absolute;
 }
 
-.staff-actions, .screened-emails, .screened-urls, .screened-ip-addresses {
+.staff-actions, .screened-emails, .screened-urls, .screened-ip-addresses, .permalinks {
 
   border-bottom: dotted 1px scale-color($primary, $lightness: 75%);
 
@@ -1235,6 +1250,10 @@ table.api-keys {
   .fa-times {
     color: $danger;
   }
+}
+
+.admin-plugins .col-enabled {
+  width: 20px;
 }
 
 // Backups
@@ -1342,7 +1361,7 @@ and (max-width : 500px) {
 
   .content-editor {
     width: 100%;
-      #pagedown-editor {
+      .pagedown-editor {
         box-sizing: border-box;
       }
   }
@@ -1416,9 +1435,26 @@ tr.not-activated {
       float: left;
     }
 
-    .form-element {
+    .form-element, .form-element-desc {
       float: left;
-      width: 25%;
+      min-height: 30px;
+      padding: 0.25em 0;
+
+      &.input-area {
+        width: 75%;
+        input[type=text] {
+          width: 50%;
+        }
+      }
+
+      &.label-area {
+        width: 25%;
+        label {
+          margin: 0.5em 1em 0 0;
+          text-align: right;
+          font-weight: bold;
+        }
+      }
     }
 
     .controls {
@@ -1452,13 +1488,48 @@ table#user-badges {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    cursor: move;
   }
 
   .values {
     margin-bottom: 10px;
   }
 
+  .placeholder {
+    border-bottom: 1px solid #ddd;
+    padding: 3px;
+    margin-right: 10px;
+    height: 30px;
+  }
+
   input[type=text] {
     width: 90%;
   }
+}
+
+// Permalinks
+
+.permalinks {
+  .url, .topic, .category, .external_url, .post {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .url {
+    width: 200px;
+  }
+  .topic, .post, .external_url {
+    width: 180px;
+  }
+  .category {
+    width: 140px;
+  }
+  .action {
+    text-align: center;
+    width: 8%;
+  }
+}
+
+.permalink-title {
+  margin-bottom: 10px;
 }

@@ -68,21 +68,27 @@ class PostTiming < ActiveRecord::Base
     end
   end
 
+  MAX_READ_TIME_PER_BATCH = 60*1000.0
 
-  def self.process_timings(current_user, topic_id, topic_time, timings)
+  def self.process_timings(current_user, topic_id, topic_time, timings, opts={})
     current_user.user_stat.update_time_read!
 
-    account_age_msecs = ((Time.now - current_user.created_at) * 1000.0)
+    max_time_per_post = ((Time.now - current_user.created_at) * 1000.0)
+    max_time_per_post = MAX_READ_TIME_PER_BATCH if max_time_per_post > MAX_READ_TIME_PER_BATCH
 
     highest_seen = 1
 
     join_table = []
 
-    timings = timings.find_all do |post_number, time|
-      post_number >= 0 && time < account_age_msecs
+    i = timings.length
+    while i > 0
+      i -= 1
+      timings[i][1] = max_time_per_post if timings[i][1] > max_time_per_post
+      timings.delete_at(i) if timings[i][0] < 1
     end
 
     timings.each_with_index do |(post_number, time), index|
+
         join_table << "SELECT #{topic_id.to_i} topic_id, #{post_number.to_i} post_number,
                        #{current_user.id.to_i} user_id, #{time.to_i} msecs, #{index} idx"
 
@@ -122,7 +128,9 @@ SQL
       total_changed = Notification.mark_posts_read(current_user, topic_id, timings.map{|t| t[0]})
     end
 
-    TopicUser.update_last_read(current_user, topic_id, highest_seen, topic_time)
+    topic_time = max_time_per_post if topic_time > max_time_per_post
+
+    TopicUser.update_last_read(current_user, topic_id, highest_seen, topic_time, opts)
 
     if total_changed > 0
       current_user.reload

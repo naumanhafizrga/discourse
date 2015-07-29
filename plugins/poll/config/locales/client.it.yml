@@ -9,11 +9,9 @@ it:
   js:
     poll:
       voters:
-        zero: "votanti"
         one: "votante"
         other: "votanti"
       total_votes:
-        zero: "voti totali"
         one: "voto totale"
         other: "voti totali"
       average_rating: "Voto medio: <strong>%{average}</strong>."

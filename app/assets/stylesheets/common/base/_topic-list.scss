@@ -16,9 +16,14 @@
   }
 }
 
+html.anon .topic-list a.title:visited:not(.badge-notification) {color: scale-color($primary, $lightness: 45%);}
+.topic-list a.title.visited:not(.badge-notification) {color: scale-color($primary, $lightness: 45%);}
+
 .topic-list {
   width: 100%;
   border-collapse: collapse;
+
+
 
   > tbody > tr {
     &.has-excerpt .star {
@@ -191,6 +196,10 @@ ol.category-breadcrumb {
     float: left;
     margin-right: 5px;
   }
+
+  .bread-crumbs-right-outlet {
+    float: left;
+  }
 }
 
 .list-controls .category-dropdown-menu {
@@ -232,6 +241,13 @@ ol.category-breadcrumb {
   h2 {
     float: left;
     margin: 5px 0 10px;
+
+    .top-date-string {
+      color: scale-color($primary, $lightness: 60%);
+      font-weight: normal;
+      font-size: 0.7em;
+      text-transform: uppercase;
+    }
   }
 
   button {

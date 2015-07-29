@@ -114,6 +114,7 @@ const Composer = RestModel.extend({
 
   // whether to disable the post button
   cantSubmitPost: function() {
+
     // can't submit while loading
     if (this.get('loading')) return true;
 
@@ -199,12 +200,9 @@ const Composer = RestModel.extend({
     }
   }.property('privateMessage'),
 
-  /**
-    Number of missing characters in the reply until valid.
-
-    @property missingReplyCharacters
-  **/
   missingReplyCharacters: function() {
+    const postType = this.get('post.post_type');
+    if (postType === this.site.get('post_types.small_action')) { return 0; }
     return this.get('minimumPostLength') - this.get('replyLength');
   }.property('minimumPostLength', 'replyLength'),
 
@@ -304,6 +302,21 @@ const Composer = RestModel.extend({
     Discourse.KeyValueStore.set({ key: 'composer.showPreview', value: this.get('showPreview') });
   },
 
+  applyTopicTemplate: function() {
+    if (this.get('action') !== CREATE_TOPIC) { return; }
+    if (!Ember.isEmpty(this.get('reply'))) { return; }
+
+    const categoryId = this.get('categoryId');
+    const category = this.site.categories.find((c) => c.get('id') === categoryId);
+    if (category) {
+      const topicTemplate = category.get('topic_template');
+      if (!Ember.isEmpty(topicTemplate)) {
+        this.set('reply', topicTemplate);
+      }
+    }
+
+  }.observes('categoryId'),
+
   /*
      Open a composer
 
@@ -346,8 +359,9 @@ const Composer = RestModel.extend({
       }
     }
 
+    const categoryId = opts.categoryId || this.get('topic.category.id');
     this.setProperties({
-      categoryId: opts.categoryId || this.get('topic.category.id'),
+      categoryId,
       archetypeId: opts.archetypeId || this.site.get('default_archetype'),
       metaData: opts.metaData ? Em.Object.create(opts.metaData) : null,
       reply: opts.reply || this.get("reply") || ""
@@ -570,7 +584,7 @@ const Composer = RestModel.extend({
   },
 
   getCookedHtml() {
-    return $('#wmd-preview').html().replace(/<span class="marker"><\/span>/g, '');
+    return $('#reply-control .wmd-preview').html().replace(/<span class="marker"><\/span>/g, '');
   },
 
   saveDraft() {
