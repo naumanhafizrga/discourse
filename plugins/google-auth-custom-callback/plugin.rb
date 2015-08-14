@@ -24,12 +24,16 @@ after_initialize do
 
       authenticator = self.class.find_authenticator(params[:provider])
 
-      @data = authenticator.after_authenticate(auth)
-      @data.authenticator_name = authenticator.name
+      @auth_result = authenticator.after_authenticate(auth)
 
-      complete_response_data
-
-      render "/plugins/google-auth-custom-callback/app/views/google_auth_custom_callback/complete"
+      if @auth_result.failed?
+        flash[:error] = @auth_result.failed_reason.html_safe
+        return render('failure')
+      else
+        @auth_result.authenticator_name = authenticator.name
+        complete_response_data
+        render "/plugins/google-auth-custom-callback/app/views/google_auth_custom_callback/complete"
+      end
     end
   end
 

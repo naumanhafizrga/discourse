@@ -25,7 +25,7 @@
       window.addEventListener("message", function(ev) {
         if (ev.data.message === "requestResult") {
           // ev.source is the opener
-          ev.source.postMessage({ message: "deliverResult", result: <%=@data.to_client_hash.to_json.html_safe%> }, "*");
+          ev.source.postMessage({ message: "deliverResult", result: <%=@auth_result.to_client_hash.to_json.html_safe%> }, "*");
         }   
       });
     </script>
